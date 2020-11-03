@@ -130,8 +130,22 @@
                 FROM PRODUCT_CATEGORIES
            WHERE CATEGORY_ID = (SELECT ID FROM CATEGORIES WHERE FIRST = '가구' AND SECOND = '의자') -- 예시INPUT
           );
+
+# 2-D
+    SELECT B.name,
+           SUM(A.COUNT) AS BUY_COUNT,
+           SUM(A.COUNT * B.COST) AS BUY_AMOUNT
+           FROM ORDERS A
+       JOIN(SELECT * FROM (SELECT A.*,
+                                  ROW_NUMBER() OVER(PARTITION BY category_id ORDER BY position ASC) AS RN
+                                FROM product_categories A) A
+                            JOIN products B ON A.product_id = B.id
+                            WHERE RN = 1) B
+        ON A.product_id = B.product_id
+        GROUP BY A.product_id;
 # 3-A
 # 3-B
+
 # 4-A
 
 # 1번 풀이
