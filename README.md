@@ -144,6 +144,115 @@
         ON A.product_id = B.product_id
         GROUP BY A.product_id;
 # 3-A
+    //// -- LEVEL 1
+    //// -- Tables and References
+
+    // Creating tables
+    //로그인테이블
+    Table login as U {
+      login_id int [pk, increment] // auto-increment
+      nickname varchar(unique)
+      email varchar(unique)
+      password varchar
+      created_at datetime
+      updated_at datetime
+    }
+
+    //고객테이블
+    Table customer as U {
+      customer_id int [pk, increment] // auto-increment
+      nickname varchar(fk) unique 
+      gender varchar unique
+      birthday datetime
+      created_at datetime
+      updated_at datetime
+    }
+
+    //사진테이블
+    Table cards as U { 
+      card_id int [pk, increment] // auto-increment
+      nickname varchar(fk)
+      category_id varchar(fk)
+      image_url varchar
+      created_at datetime
+      updated_at datetime
+    }
+
+    //사진 카테고리 테이블
+    Table card_category as U { 
+      category_id int [pk, increment]
+      category_desc text
+      created_at datetime
+      updated_at datetime
+    }
+
+    //스크랩 테이블
+    Table scraps as U { 
+      scrap_id int [pk, increment]
+      nickname varchar(fk)
+      scrap_title varchar
+      created_at datetime
+      updated_at datetime
+    }
+
+    //스크랩 타이틀별 사진구성 테이블
+    Table scraps_title as U {
+      scraps_title_id int [pk, increment]
+      scrap_id int(fk) 
+      image_layout varchar //이미지 구성 card_id 1|2|3|4|5
+      created_at datetime
+      updated_at datetime
+    }
+
+    Table card_comment as U { 
+      cardcomment_id int [pk, increment]
+      card_id int(fk) 
+      nickname varchar //이미지 구성
+      created_at datetime
+      updated_at datetime
+    }
+
+    Table card_like as U { 
+      cardLike_id int [pk, increment]
+      card_id int(fk) 
+      nickname varchar //이미지 구성
+      created_at datetime
+      updated_at datetime
+    }
+
+    Table scraps_comment as U { 
+      scrapscomment_id int [pk, increment]
+      scrap_id int(fk) 
+      nickname varchar //이미지 구성
+      created_at datetime
+      updated_at datetime
+    }
+
+    Table scraps_like as U { 
+      scraps_like_id int [pk, increment]
+      scrap_id int(fk) 
+      nickname varchar //이미지 구성
+      created_at datetime
+      updated_at datetime
+    }
+
+    Ref: "login"."nickname" - "customer"."nickname"
+
+    Ref: "customer"."nickname" < "cards"."nickname"
+
+    Ref: "login"."nickname" < "scraps"."nickname"
+
+    Ref: "scraps"."scrap_id" < "scraps_title"."scrap_id"
+
+    Ref: "cards"."category_id" < "card_category"."category_id"
+
+    Ref: "scraps_title"."scrap_id" < "scraps_comment"."scrap_id"
+
+    Ref: "scraps_comment"."scrap_id" < "scraps_like"."scrap_id"
+
+    Ref: "cards"."card_id" < "card_comment"."card_id"
+
+    Ref: "card_comment"."card_id" < "card_like"."card_id"
 # 3-B
 
 # 4-A
