@@ -14,9 +14,6 @@
                   ON A.id = C.card_id
     GROUP BY A.id
     ORDER BY A.id;
-    
-   ![test](https://user-images.githubusercontent.com/44044905/97944499-31bbfb80-1dc8-11eb-90cd-f87dfedfed3c.PNG)
-
 
 # 1-B번문제 풀이
 
