@@ -1,7 +1,7 @@
-# 의 과제 2020-11-03
-====================================================================================================================================================================
-# 1-A번문제 풀이
+#### 2020-11-03 TEST 제출
 
+## 쿼리1
+# 1-A번문제 풀이
 SELECT
     A.id,
     A.image_url,
@@ -14,6 +14,7 @@ FROM cards A
               ON A.id = C.card_id
 GROUP BY A.id
 ORDER BY A.id;
+
 # 1-B번문제 풀이
 SELECT
     A.id,
@@ -84,7 +85,7 @@ JOIN (SELECT A.*,
 ON A.user_id = B.user_id
 GROUP BY A.id
 ORDER BY A.created_at;
---------------------------쿼리2------------------------------
+## 쿼리2
 # 2-A
 SELECT B.BRAND_NAME,
        SUM(A.COUNT) AS BUY_COUNT,
@@ -110,16 +111,16 @@ GROUP BY A.NICKNAME
 ORDER BY A.NICKNAME;
 # 2-C
 
---------------------------설계1------------------------------
 
+## 설계
 # 3-A
 # 3-B
 
---------------------------알고리즘-----------------------------
 
 
-# 4-A
-## 1번 풀이
+## 알고리즘
+## 4-A
+# 1번 풀이
    private void algorithm(){
       int[] a ={1,4,2};
       int[] b ={4,5,3};
@@ -134,7 +135,7 @@ ORDER BY A.NICKNAME;
       long resTime = System.currentTimeMillis();
       System.out.println("최소값 계산방식 알고리즘2 ="+result+"_"+ (resTime - reqTime)/1000.000);
    }
-## 2번 풀이
+# 2번 풀이
    private void algorithm() {
       Integer[] a = {1,4,2};
       Integer[] b = {4,5,3};
@@ -149,8 +150,9 @@ ORDER BY A.NICKNAME;
       long resTime = System.currentTimeMillis();
       System.out.println("최소값 Wrapper Class 함수형 리버스="+ result +"_"+ (resTime - reqTime)/1000.000 );
    }
-# 4-B
-   private void algorithm(){
+## 4-B
+   
+   "private void algorithm(){
       Integer[] frontTeam = {10,8,2,14};
       Integer[] backEndTeam = {4,4,12,16};
       int winCount = 0;
@@ -168,4 +170,5 @@ ORDER BY A.NICKNAME;
             winCount++;
          }
       }
-   }
+   }"
+   
