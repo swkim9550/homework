@@ -144,6 +144,7 @@
         ON A.product_id = B.product_id
         GROUP BY A.product_id;
 # 3-A
+![ERD](https://user-images.githubusercontent.com/44044905/97960978-c426c400-1df5-11eb-9d89-b4acfac2759a.PNG)
     //// -- LEVEL 1
     //// -- Tables and References
 
